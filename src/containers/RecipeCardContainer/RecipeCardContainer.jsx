@@ -23,15 +23,15 @@ const RecipeCardContainer = () => {
   }, []);
 
   return (
-    <>
-      <h2>My recipes</h2>
-      <div>
+    <div className="recipe-card-container">
+      <h2 className="recipe-card-container__header">My recipes</h2>
+      <div className="recipe-card-container__recipes">
         {recipes.length > 0 &&
           recipes.map((recipe) => (
             <RecipeCard key={recipe.id} recipe={recipe} />
           ))}
       </div>
-    </>
+    </div>
   );
 };
 

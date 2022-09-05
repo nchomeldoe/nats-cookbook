@@ -1,0 +1,8 @@
+@use "../../assets/sass/_variables.scss" as *;
+
+.recipe-card {
+  border: 0.2rem solid $color-primary;
+  border-radius: 1rem;
+  padding: 1rem;
+  min-width: 15rem;
+}

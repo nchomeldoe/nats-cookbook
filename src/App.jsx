@@ -3,8 +3,8 @@ import RecipeCardContainer from "./containers/RecipeCardContainer/RecipeCardCont
 
 const App = () => {
   return (
-    <div className="App">
-      <h1>Nat's Cookbook</h1>
+    <div className="app">
+      <h1 className="app__header">Nat's Cookbook</h1>
       <RecipeCardContainer />
     </div>
   );

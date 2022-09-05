@@ -1,3 +1,16 @@
-.App {
-  background-color: blue;
+@use "./assets/sass/_variables.scss" as *;
+
+.app {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  color: $color-primary;
+  align-items: center;
+
+  &__header {
+    font-family: $font-primary;
+    font-weight: 700;
+    font-size: 5rem;
+    text-align: center;
+  }
 }

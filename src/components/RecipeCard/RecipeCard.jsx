@@ -13,12 +13,12 @@ const RecipeCard = ({ recipe }) => {
   } = recipe;
 
   return (
-    <>
-      <h3>{name}</h3>
-      <p>{description}</p>
-      <p>{cuisine}</p>
-      <div>
-        <h4>Ingredients</h4>
+    <div className="recipe-card">
+      <h3 className="recipe-card__name">{name}</h3>
+      <p className="recipe-card__decsription">{description}</p>
+      <p className="recipe-card__cuisine">{cuisine}</p>
+      <div className="recipe-card__ingredients">
+        <h4 className="recipe-card__ingredients-heading">Ingredients</h4>
         {ingredientsAndQuantities.length > 0 &&
           ingredientsAndQuantities.map((item, index) => (
             <Ingredient
@@ -29,7 +29,7 @@ const RecipeCard = ({ recipe }) => {
             />
           ))}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,0 +1,21 @@
+@use "../../assets/sass/_variables.scss" as *;
+
+.recipe-card-container {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  max-width: 200rem;
+
+  &__header {
+    font-family: $font-primary;
+    font-weight: 400;
+    font-size: 3rem;
+  }
+
+  &__recipes {
+    margin-top: 1rem;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+}
