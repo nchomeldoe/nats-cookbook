@@ -6,6 +6,7 @@ const RecipeCard = ({ recipe }) => {
   const {
     id,
     name,
+    serves,
     description,
     createdBy,
     cuisine,
@@ -15,6 +16,7 @@ const RecipeCard = ({ recipe }) => {
   return (
     <div className="recipe-card">
       <h3 className="recipe-card__name">{name}</h3>
+      <p className="recipe-card__serves">{serves}</p>
       <p className="recipe-card__decsription">{description}</p>
       <p className="recipe-card__cuisine">{cuisine}</p>
       <div className="recipe-card__ingredients">
