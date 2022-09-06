@@ -7,19 +7,35 @@ const RecipeCardContainer = () => {
 
   const getRecipes = async () => {
     try {
-      let response = await fetch("http://localhost:8080/cookbook/recipes");
+      const response = await fetch("http://localhost:8080/cookbook/recipes");
       if (!response.ok) {
         throw new Error(response.status + " error with request");
       }
-      let recipeData = await response.json();
+      const recipeData = await response.json();
       setRecipes(recipeData);
     } catch (error) {
       return error.message;
     }
   };
 
+  const deleteRecipe = async (recipeId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/cookbook/recipe/${recipeId}`,
+        { method: "DELETE" },
+      );
+      if (!response.ok) {
+        throw new Error(response.status + " error with request");
+      }
+      const updatedRecipes = recipes.filter((recipe) => recipe.id != recipeId);
+      setRecipes(updatedRecipes);
+    } catch (error) {
+      return error.message;
+    }
+  };
+
   useEffect(() => {
-    setRecipes(getRecipes());
+    getRecipes();
   }, []);
 
   return (
@@ -28,7 +44,11 @@ const RecipeCardContainer = () => {
       <div className="recipe-card-container__recipes">
         {recipes.length > 0 &&
           recipes.map((recipe) => (
-            <RecipeCard key={recipe.id} recipe={recipe} />
+            <RecipeCard
+              key={recipe.id}
+              recipe={recipe}
+              deleteRecipe={deleteRecipe}
+            />
           ))}
       </div>
     </div>

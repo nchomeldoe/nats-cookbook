@@ -3,7 +3,7 @@ import Ingredient from "../Ingredient/Ingredient";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
-const RecipeCard = ({ recipe }) => {
+const RecipeCard = ({ recipe, deleteRecipe }) => {
   const {
     id,
     name,
@@ -24,7 +24,13 @@ const RecipeCard = ({ recipe }) => {
         </h3>
         <div className="recipe-card__icons">
           <FontAwesomeIcon icon={faPenToSquare} className="recipe-card__icon" />
-          <FontAwesomeIcon icon={faTrashCan} className="recipe-card__icon" />
+          <FontAwesomeIcon
+            icon={faTrashCan}
+            className="recipe-card__icon"
+            onClick={() => {
+              deleteRecipe(id);
+            }}
+          />
         </div>
       </div>
 

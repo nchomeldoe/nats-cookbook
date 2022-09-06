@@ -7,6 +7,15 @@
   padding: 1rem;
   min-width: 15rem;
 
+  &__top-line {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__icon {
+    margin-left: 1rem;
+  }
+
   &__name,
   &__ingredients,
   &__description {
