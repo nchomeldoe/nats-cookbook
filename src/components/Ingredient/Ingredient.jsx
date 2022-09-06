@@ -4,9 +4,9 @@ const Ingredient = ({ name, value, unit }) => {
   console.log("name value and unit", name, value, unit);
   return (
     <>
-      <p>{name}</p>
-      <p>{value}</p>
-      <p>{unit}</p>
+      <p>
+        {name}: ({value} {unit})
+      </p>
     </>
   );
 };

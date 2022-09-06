@@ -1,8 +1,31 @@
 @use "../../assets/sass/_variables.scss" as *;
 
 .recipe-card {
+  font-family: $font-secondary;
   border: 0.2rem solid $color-primary;
   border-radius: 1rem;
   padding: 1rem;
   min-width: 15rem;
+
+  &__name,
+  &__ingredients,
+  &__description {
+    margin-bottom: 1rem;
+  }
+
+  &__serves {
+    font-size: 0.8rem;
+    margin-left: 1rem;
+  }
+
+  &__subheading {
+    margin-bottom: 0.5rem;
+  }
+
+  &__cuisine {
+    width: 5rem;
+    text-align: center;
+    background-color: $color-primary;
+    color: $color-secondary;
+  }
 }
