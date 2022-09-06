@@ -7,7 +7,10 @@ import Button from "../Button/Button";
 import "./RecipeForm.scss";
 
 const RecipeForm = () => {
-  const [ingredientFormItems, setIngredientFormItems] = useState([{ id: 1 }]);
+  const [ingredientFormItems, setIngredientFormItems] = useState([
+    { id: 1 },
+    { id: 2 },
+  ]);
   const navigate = useNavigate();
 
   const handleAddIngredientFormItem = () => {
@@ -23,7 +26,7 @@ const RecipeForm = () => {
   const handleRemoveIngredientFormItem = (id) => {
     setIngredientFormItems((currState) => {
       const tempIngredientFormItems = [...currState];
-      if (tempIngredientFormItems.length == 1) {
+      if (tempIngredientFormItems.length == 2) {
         return tempIngredientFormItems;
       }
       const filteredIngredientFormItems = tempIngredientFormItems.filter(
@@ -116,6 +119,7 @@ const RecipeForm = () => {
         type="text"
         id="recipeName"
         name="recipeName"
+        required
       />
       <label className="recipe-form__label" htmlFor="serves">
         Serves:
@@ -125,6 +129,7 @@ const RecipeForm = () => {
         type="text"
         id="serves"
         name="serves"
+        required
       />
       <fieldset className="recipe-form__fieldset">
         <div className="recipe-form__ingredients-container">
@@ -141,6 +146,7 @@ const RecipeForm = () => {
               key={item.id}
               id={item.id}
               handleRemoveIngredientFormItem={handleRemoveIngredientFormItem}
+              ingredientFormItems={ingredientFormItems}
             />
           ))}
         </div>
@@ -152,6 +158,7 @@ const RecipeForm = () => {
         className="recipe-form__input recipe-form__input--textarea"
         id="description"
         name="description"
+        required
       />
       <label className="recipe-form__label" htmlFor="cuisine">
         Cuisine:
@@ -161,6 +168,7 @@ const RecipeForm = () => {
         type="text"
         id="cuisine"
         name="cuisine"
+        required
       />
       <div className="recipe-form__buttons-container">
         <Button text="Add recipe" styling="primary" type="submit" />

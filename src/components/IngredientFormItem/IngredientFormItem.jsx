@@ -2,26 +2,34 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleMinus } from "@fortawesome/free-solid-svg-icons";
 import "./IngredientFormItem.scss";
 
-const IngredientFormItem = ({ handleRemoveIngredientFormItem, id }) => {
+const IngredientFormItem = ({
+  handleRemoveIngredientFormItem,
+  id,
+  ingredientFormItems,
+}) => {
+  const position = ingredientFormItems.findIndex((item) => item.id == id);
   return (
     <div className="ingredient-form-item">
       <div className="ingredient-form-item__name-heading">
         <label className="ingredient-form-item__label" htmlFor="ingredientName">
           Name:
         </label>
-        <FontAwesomeIcon
-          className="ingredient-form-item__icon"
-          icon={faCircleMinus}
-          onClick={() => {
-            handleRemoveIngredientFormItem(id);
-          }}
-        />
+        {position > 1 && (
+          <FontAwesomeIcon
+            className="ingredient-form-item__icon"
+            icon={faCircleMinus}
+            onClick={() => {
+              handleRemoveIngredientFormItem(id);
+            }}
+          />
+        )}
       </div>
       <input
         className="ingredient-form-item__input ingredient-form-item__input--text"
         type="text"
         id="ingredientName"
         name="ingredientName"
+        required
       />
       <fieldset className="ingredient-form-item__fieldset">
         <legend className="ingredient-form-item__legend">Quantity:</legend>
@@ -38,6 +46,7 @@ const IngredientFormItem = ({ handleRemoveIngredientFormItem, id }) => {
               type="text"
               id="quantityValue"
               name="quantityValue"
+              required
             />
           </div>
           <div className="ingredient-form-item__quantity-section">
