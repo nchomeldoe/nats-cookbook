@@ -43,7 +43,7 @@ const IngredientFormItem = ({
             </label>
             <input
               className="ingredient-form-item__input ingredient-form-item__input--text"
-              type="text"
+              type="number"
               id="quantityValue"
               name="quantityValue"
               required

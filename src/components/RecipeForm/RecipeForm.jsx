@@ -126,7 +126,7 @@ const RecipeForm = () => {
       </label>
       <input
         className="recipe-form__input recipe-form__input--text"
-        type="text"
+        type="number"
         id="serves"
         name="serves"
         required
