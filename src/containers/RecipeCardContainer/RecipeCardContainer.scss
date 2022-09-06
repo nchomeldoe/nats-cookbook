@@ -6,6 +6,26 @@
   flex-direction: column;
   max-width: 200rem;
 
+  &__top-line {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__button {
+    border: none;
+    background-color: $color-primary;
+    color: $color-secondary;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    border: 0.2rem solid $color-primary;
+    font-family: $font-secondary;
+
+    &:hover {
+      background-color: $color-secondary;
+      color: $color-primary;
+    }
+  }
+
   &__header {
     font-family: $font-primary;
     font-weight: 400;

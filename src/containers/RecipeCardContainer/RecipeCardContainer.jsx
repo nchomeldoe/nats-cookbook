@@ -40,7 +40,10 @@ const RecipeCardContainer = () => {
 
   return (
     <div className="recipe-card-container">
-      <h2 className="recipe-card-container__header">My recipes</h2>
+      <div className="recipe-card-container__top-line">
+        <h2 className="recipe-card-container__header">My recipes</h2>
+        <button className="recipe-card-container__button">Add recipe</button>
+      </div>
       <div className="recipe-card-container__recipes">
         {recipes.length > 0 &&
           recipes.map((recipe) => (

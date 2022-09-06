@@ -23,10 +23,13 @@ const RecipeCard = ({ recipe, deleteRecipe }) => {
           {name} <span className="recipe-card__serves">(serves {serves})</span>
         </h3>
         <div className="recipe-card__icons">
-          <FontAwesomeIcon icon={faPenToSquare} className="recipe-card__icon" />
+          <FontAwesomeIcon
+            icon={faPenToSquare}
+            className="recipe-card__icon recipe-card__icon--edit"
+          />
           <FontAwesomeIcon
             icon={faTrashCan}
-            className="recipe-card__icon"
+            className="recipe-card__icon recipe-card__icon--delete"
             onClick={() => {
               deleteRecipe(id);
             }}
