@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import IngredientFormItem from "../IngredientFormItem/IngredientFormItem";
@@ -7,6 +8,7 @@ import "./RecipeForm.scss";
 
 const RecipeForm = () => {
   const [ingredientFormItems, setIngredientFormItems] = useState([{ id: 1 }]);
+  const navigate = useNavigate();
 
   const handleAddIngredientFormItem = () => {
     setIngredientFormItems((currState) => {
@@ -31,8 +33,7 @@ const RecipeForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const getDataFromForm = (e) => {
     const recipeName =
       e.target.recipeName.value[0].toUpperCase() +
       e.target.recipeName.value
@@ -70,13 +71,39 @@ const RecipeForm = () => {
     e.target.quantityValue.forEach((quantityValue, index) => {
       ingredientsAndQuantities[index].quantity.value = quantityValue.value;
     });
-    console.log(
-      recipeName,
-      serves,
-      description,
-      cuisine,
-      ingredientsAndQuantities,
-    );
+    const fullRecipeData = {
+      serves: serves,
+      name: recipeName,
+      description: description,
+      createdBy: "Nat",
+      cuisine: cuisine,
+      ingredientsAndQuantities: ingredientsAndQuantities,
+    };
+    return fullRecipeData;
+  };
+
+  const postRecipe = async (recipeData) => {
+    try {
+      const response = await fetch(`http://localhost:8080/cookbook/recipe`, {
+        method: "POST",
+        body: JSON.stringify(recipeData),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        throw new Error(response.status + " error with request");
+      }
+      navigate("/");
+    } catch (error) {
+      return error.message;
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await postRecipe(getDataFromForm(e));
   };
 
   return (
