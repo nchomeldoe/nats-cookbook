@@ -1,0 +1,15 @@
+@use "../../assets/sass/_variables.scss" as *;
+
+.new-recipe {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 80vw;
+  max-width: 200rem;
+
+  &__header {
+    font-family: $font-primary;
+    font-weight: 400;
+    font-size: 3rem;
+  }
+}
