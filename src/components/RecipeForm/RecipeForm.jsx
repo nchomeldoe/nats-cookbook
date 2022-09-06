@@ -7,8 +7,6 @@ import "./RecipeForm.scss";
 const RecipeForm = () => {
   const [ingredientFormItems, setIngredientFormItems] = useState([{ id: 1 }]);
 
-  console.log(ingredientFormItems);
-
   const handleAddIngredientFormItem = () => {
     setIngredientFormItems((currState) => {
       const tempIngredientFormItems = [...currState];
@@ -53,20 +51,23 @@ const RecipeForm = () => {
         name="serves"
       />
       <fieldset className="recipe-form__fieldset">
-        <div className="recipe-form__ingredients">
-          <legend className="recipe-form__legend">Ingredients</legend>
-          <FontAwesomeIcon
-            icon={faCirclePlus}
-            onClick={handleAddIngredientFormItem}
-          />
+        <div className="recipe-form__ingredients-container">
+          <div className="recipe-form__ingredients-heading">
+            <legend className="recipe-form__legend">Ingredients</legend>
+            <FontAwesomeIcon
+              className="recipe-form__icon"
+              icon={faCirclePlus}
+              onClick={handleAddIngredientFormItem}
+            />
+          </div>
+          {ingredientFormItems.map((item) => (
+            <IngredientFormItem
+              key={item.id}
+              id={item.id}
+              handleRemoveIngredientFormItem={handleRemoveIngredientFormItem}
+            />
+          ))}
         </div>
-        {ingredientFormItems.map((item) => (
-          <IngredientFormItem
-            key={item.id}
-            id={item.id}
-            handleRemoveIngredientFormItem={handleRemoveIngredientFormItem}
-          />
-        ))}
       </fieldset>
       <label className="recipe-form__label" htmlFor="description">
         Method:
