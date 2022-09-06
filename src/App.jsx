@@ -1,12 +1,22 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import "./App.scss";
 import RecipeCardContainer from "./containers/RecipeCardContainer/RecipeCardContainer";
+import NewRecipe from "./containers/NewRecipe/NewRecipe";
+import UpdateRecipe from "./containers/UpdateRecipe/UpdateRecipe";
 
 const App = () => {
   return (
-    <div className="app">
-      <h1 className="app__header">Nat's Cookbook</h1>
-      <RecipeCardContainer />
-    </div>
+    <Router>
+      <div className="app">
+        <h1 className="app__header">Nat's Cookbook</h1>
+        <Routes>
+          <Route path="/" element={<RecipeCardContainer />} />
+          <Route path="/new" element={<NewRecipe />} />
+          <Route path="/update/:recipeId" element={<UpdateRecipe />} />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
