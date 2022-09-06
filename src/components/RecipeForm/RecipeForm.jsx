@@ -5,16 +5,31 @@ import IngredientFormItem from "../IngredientFormItem/IngredientFormItem";
 import "./RecipeForm.scss";
 
 const RecipeForm = () => {
-  const [ingredientFormItemsCount, setIngredientFormItemsCount] = useState(1);
+  const [ingredientFormItems, setIngredientFormItems] = useState([{ id: 1 }]);
 
-  let ingredientFormItemsJsx = [];
-
-  for (let i = 1; i <= ingredientFormItemsCount; i++) {
-    ingredientFormItemsJsx.push(<IngredientFormItem key={i} />);
-  }
+  console.log(ingredientFormItems);
 
   const handleAddIngredientFormItem = () => {
-    setIngredientFormItemsCount(ingredientFormItemsCount + 1);
+    setIngredientFormItems((currState) => {
+      const tempIngredientFormItems = [...currState];
+      tempIngredientFormItems.push({
+        id: tempIngredientFormItems[tempIngredientFormItems.length - 1].id + 1,
+      });
+      return tempIngredientFormItems;
+    });
+  };
+
+  const handleRemoveIngredientFormItem = (id) => {
+    setIngredientFormItems((currState) => {
+      const tempIngredientFormItems = [...currState];
+      if (tempIngredientFormItems.length == 1) {
+        return tempIngredientFormItems;
+      }
+      const filteredIngredientFormItems = tempIngredientFormItems.filter(
+        (item) => item.id != id,
+      );
+      return filteredIngredientFormItems;
+    });
   };
 
   return (
@@ -45,7 +60,13 @@ const RecipeForm = () => {
             onClick={handleAddIngredientFormItem}
           />
         </div>
-        {ingredientFormItemsJsx}
+        {ingredientFormItems.map((item) => (
+          <IngredientFormItem
+            key={item.id}
+            id={item.id}
+            handleRemoveIngredientFormItem={handleRemoveIngredientFormItem}
+          />
+        ))}
       </fieldset>
       <label className="recipe-form__label" htmlFor="description">
         Method:

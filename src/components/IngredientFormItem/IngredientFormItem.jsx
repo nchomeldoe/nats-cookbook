@@ -1,11 +1,19 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleMinus } from "@fortawesome/free-solid-svg-icons";
 import "./IngredientFormItem.scss";
 
-const IngredientFormItem = () => {
+const IngredientFormItem = ({ handleRemoveIngredientFormItem, id }) => {
   return (
     <div>
       <label className="recipe-form__label" htmlFor="ingredientName">
         Name:
       </label>
+      <FontAwesomeIcon
+        icon={faCircleMinus}
+        onClick={() => {
+          handleRemoveIngredientFormItem(id);
+        }}
+      />
       <input
         className="recipe-form__input recipe-form__input--text"
         type="text"
