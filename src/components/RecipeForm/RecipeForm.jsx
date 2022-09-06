@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import IngredientFormItem from "../IngredientFormItem/IngredientFormItem";
+import Button from "../Button/Button";
 import "./RecipeForm.scss";
 
 const RecipeForm = () => {
@@ -86,6 +87,10 @@ const RecipeForm = () => {
         id="cuisine"
         name="cuisine"
       />
+      <div className="recipe-form__buttons-container">
+        <Button text="Add recipe" type="primary" />
+        <Button text="Clear all" type="secondary" />
+      </div>
     </form>
   );
 };

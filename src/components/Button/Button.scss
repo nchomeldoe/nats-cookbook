@@ -1,0 +1,26 @@
+@use "../../assets/sass/_variables.scss" as *;
+
+.button {
+  border-radius: 1rem;
+  padding: 0.5rem;
+  border: 0.2rem solid $color-primary;
+  font-family: $font-secondary;
+
+  &--primary {
+    background-color: $color-primary;
+    color: $color-secondary;
+    &:hover {
+      background-color: $color-secondary;
+      color: $color-primary;
+    }
+  }
+
+  &--secondary {
+    background-color: $color-secondary;
+    color: $color-primary;
+    &:hover {
+      background-color: $color-primary;
+      color: $color-secondary;
+    }
+  }
+}

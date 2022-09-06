@@ -13,7 +13,7 @@
   &__input {
     margin-top: 0.5rem;
     margin-right: 0.5rem;
-    padding: 0;
+    padding: 0.2rem;
     border: 0.02rem solid $color-primary;
     outline: 0;
     font-size: 100%;
@@ -44,6 +44,5 @@
 
   &__quantity-container {
     display: flex;
-    justify-content: space-between;
   }
 }

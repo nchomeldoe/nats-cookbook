@@ -14,7 +14,7 @@
   &__input {
     margin-top: 0.5rem;
     margin-right: 0.5rem;
-    padding: 0;
+    padding: 0.2rem;
     border: 0.02rem solid $color-primary;
     outline: 0;
     font-size: 100%;
@@ -52,5 +52,11 @@
     flex-direction: column;
     font-family: $font-secondary;
     color: $color-primary;
+  }
+
+  &__buttons-container {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
   }
 }

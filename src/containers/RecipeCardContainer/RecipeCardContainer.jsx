@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./RecipeCardContainer.scss";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
+import Button from "../../components/Button/Button";
 
 const RecipeCardContainer = () => {
   const [recipes, setRecipes] = useState([]);
@@ -42,9 +43,11 @@ const RecipeCardContainer = () => {
   return (
     <div className="recipe-card-container">
       <div className="recipe-card-container__top-line">
-        <h2 className="recipe-card-container__header">My recipes</h2>
+        <h2 className="recipe-card-container__header">
+          {recipes.length > 0 ? "My recipes" : "Loading recipes..."}
+        </h2>
         <Link to="/new">
-          <button className="recipe-card-container__button">Add recipe</button>
+          <Button text="Add recipe" type="primary" />
         </Link>
       </div>
       <div className="recipe-card-container__recipes">
