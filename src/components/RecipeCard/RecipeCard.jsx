@@ -1,7 +1,8 @@
-import "./RecipeCard.scss";
-import Ingredient from "../Ingredient/Ingredient";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import "./RecipeCard.scss";
+import Ingredient from "../Ingredient/Ingredient";
 
 const RecipeCard = ({ recipe, deleteRecipe }) => {
   const {
@@ -23,10 +24,13 @@ const RecipeCard = ({ recipe, deleteRecipe }) => {
           {name} <span className="recipe-card__serves">(serves {serves})</span>
         </h3>
         <div className="recipe-card__icons">
-          <FontAwesomeIcon
-            icon={faPenToSquare}
-            className="recipe-card__icon recipe-card__icon--edit"
-          />
+          <Link to={`/update/${id}`}>
+            <FontAwesomeIcon
+              icon={faPenToSquare}
+              className="
+            recipe-card__icon recipe-card__icon--edit"
+            />
+          </Link>
           <FontAwesomeIcon
             icon={faTrashCan}
             className="recipe-card__icon recipe-card__icon--delete"

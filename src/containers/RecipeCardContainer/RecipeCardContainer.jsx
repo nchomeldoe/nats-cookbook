@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./RecipeCardContainer.scss";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 
@@ -42,7 +43,9 @@ const RecipeCardContainer = () => {
     <div className="recipe-card-container">
       <div className="recipe-card-container__top-line">
         <h2 className="recipe-card-container__header">My recipes</h2>
-        <button className="recipe-card-container__button">Add recipe</button>
+        <Link to="/new">
+          <button className="recipe-card-container__button">Add recipe</button>
+        </Link>
       </div>
       <div className="recipe-card-container__recipes">
         {recipes.length > 0 &&
