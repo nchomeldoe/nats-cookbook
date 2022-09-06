@@ -27,24 +27,30 @@ const IngredientFormItem = ({ handleRemoveIngredientFormItem, id }) => {
         <legend className="ingredient-form-item__legend">Quantity:</legend>
         <div className="ingredient-form-item__quantity-container">
           <div className="ingredient-form-item__quantity-section">
-            <label className="ingredient-form-item__label" htmlFor="value">
+            <label
+              className="ingredient-form-item__label"
+              htmlFor="quantityValue"
+            >
               Value:
             </label>
             <input
               className="ingredient-form-item__input ingredient-form-item__input--text"
               type="text"
-              id="value"
-              name="value"
+              id="quantityValue"
+              name="quantityValue"
             />
           </div>
           <div className="ingredient-form-item__quantity-section">
-            <label className="ingredient-form-item__label" htmlFor="unit">
+            <label
+              className="ingredient-form-item__label"
+              htmlFor="quantityUnit"
+            >
               Unit:
             </label>
             <select
               className="ingredient-form-item__input ingredient-form-item__input--select"
-              name="unit"
-              id="unit"
+              name="quantityUnit"
+              id="quantityUnit"
             >
               <option>item</option>
               <option>mg</option>

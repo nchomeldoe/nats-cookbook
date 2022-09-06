@@ -31,8 +31,56 @@ const RecipeForm = () => {
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const recipeName =
+      e.target.recipeName.value[0].toUpperCase() +
+      e.target.recipeName.value
+        .substring(1, e.target.recipeName.value.length)
+        .toLowerCase();
+    const serves = e.target.serves.value;
+    const description = e.target.description.value
+      .split(". ")
+      .map((sentence) => {
+        if (sentence[sentence.length - 1] != ".") {
+          sentence += ".";
+        }
+        return (
+          sentence[0].toUpperCase() +
+          sentence.substring(1, sentence.length).toLowerCase()
+        );
+      });
+    const cuisine =
+      e.target.cuisine.value[0].toUpperCase() +
+      e.target.cuisine.value
+        .substring(1, e.target.recipeName.value.length)
+        .toLowerCase();
+    const ingredientsAndQuantities = [];
+    e.target.ingredientName.forEach((name) => {
+      const ingredientDetails = {
+        ingredient: { name: "" },
+        quantity: { unit: "", value: "" },
+      };
+      ingredientDetails.ingredient.name = name.value;
+      ingredientsAndQuantities.push(ingredientDetails);
+    });
+    e.target.quantityUnit.forEach((unit, index) => {
+      ingredientsAndQuantities[index].quantity.unit = unit.value;
+    });
+    e.target.quantityValue.forEach((quantityValue, index) => {
+      ingredientsAndQuantities[index].quantity.value = quantityValue.value;
+    });
+    console.log(
+      recipeName,
+      serves,
+      description,
+      cuisine,
+      ingredientsAndQuantities,
+    );
+  };
+
   return (
-    <form className="recipe-form">
+    <form className="recipe-form" onSubmit={handleSubmit}>
       <label className="recipe-form__label" htmlFor="recipeName">
         Recipe name:
       </label>
@@ -88,8 +136,8 @@ const RecipeForm = () => {
         name="cuisine"
       />
       <div className="recipe-form__buttons-container">
-        <Button text="Add recipe" type="primary" />
-        <Button text="Clear all" type="secondary" />
+        <Button text="Add recipe" styling="primary" type="submit" />
+        <Button text="Reset" styling="secondary" type="reset" />
       </div>
     </form>
   );

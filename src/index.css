@@ -4,3 +4,10 @@
   box-sizing: border-box;
   background-color: #ee978a;
 }
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}

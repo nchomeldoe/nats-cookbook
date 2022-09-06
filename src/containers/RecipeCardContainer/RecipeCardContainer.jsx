@@ -47,7 +47,7 @@ const RecipeCardContainer = () => {
           {recipes.length > 0 ? "My recipes" : "Loading recipes..."}
         </h2>
         <Link to="/new">
-          <Button text="Add recipe" type="primary" />
+          <Button text="Add recipe" styling="primary" />
         </Link>
       </div>
       <div className="recipe-card-container__recipes">

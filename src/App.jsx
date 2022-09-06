@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import "./App.scss";
 import RecipeCardContainer from "./containers/RecipeCardContainer/RecipeCardContainer";
@@ -9,7 +9,9 @@ const App = () => {
   return (
     <Router>
       <div className="app">
-        <h1 className="app__header">Nat's Cookbook</h1>
+        <Link to={`/`}>
+          <h1 className="app__header">Nat's Cookbook</h1>
+        </Link>
         <Routes>
           <Route path="/" element={<RecipeCardContainer />} />
           <Route path="/new" element={<NewRecipe />} />
