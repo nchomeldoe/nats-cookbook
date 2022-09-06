@@ -1,5 +1,7 @@
 import "./RecipeCard.scss";
 import Ingredient from "../Ingredient/Ingredient";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 const RecipeCard = ({ recipe }) => {
   const {
@@ -16,9 +18,16 @@ const RecipeCard = ({ recipe }) => {
 
   return (
     <div className="recipe-card">
-      <h3 className="recipe-card__name">
-        {name} <span className="recipe-card__serves">(serves {serves})</span>
-      </h3>
+      <div className="recipe-card__top-line">
+        <h3 className="recipe-card__name">
+          {name} <span className="recipe-card__serves">(serves {serves})</span>
+        </h3>
+        <div className="recipe-card__icons">
+          <FontAwesomeIcon icon={faPenToSquare} className="recipe-card__icon" />
+          <FontAwesomeIcon icon={faTrashCan} className="recipe-card__icon" />
+        </div>
+      </div>
+
       <div className="recipe-card__ingredients">
         <h4 className="recipe-card__subheading">Ingredients</h4>
         {ingredientsAndQuantities.length > 0 &&
