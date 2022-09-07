@@ -2,14 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleMinus } from "@fortawesome/free-solid-svg-icons";
 import "./IngredientFormItem.scss";
 
-const IngredientFormItem = ({
-  // handleRemoveIngredientFormItem,
-  // id,
-  // ingredientFormItems,
-  data,
-}) => {
-  // const position = ingredientFormItems.findIndex((item) => item.id === id);
-  // console.log(position);
+const IngredientFormItem = ({ handleRemoveIngredientFormItem, id, data }) => {
+  console.log(id);
   console.log(data.ingredient);
   return (
     <div className="ingredient-form-item">
@@ -17,15 +11,15 @@ const IngredientFormItem = ({
         <label className="ingredient-form-item__label" htmlFor="ingredientName">
           Name:
         </label>
-        {/* {position > 1 && ( */}
-        <FontAwesomeIcon
-          className="ingredient-form-item__icon"
-          icon={faCircleMinus}
-          // onClick={() => {
-          //   handleRemoveIngredientFormItem(id);
-          // }}
-        />
-        {/* )} */}
+        {id.substring(id.lastIndexOf("-") + 1, id.length) > 1 && (
+          <FontAwesomeIcon
+            className="ingredient-form-item__icon"
+            icon={faCircleMinus}
+            onClick={() => {
+              handleRemoveIngredientFormItem(id);
+            }}
+          />
+        )}
       </div>
       <input
         className="ingredient-form-item__input ingredient-form-item__input--text"

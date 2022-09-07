@@ -11,28 +11,28 @@ const RecipeForm = ({ initialValues, handleSubmit }) => {
 
   console.log(formValues.ingredientsAndQuantities);
 
-  // const handleAddIngredientFormItem = () => {
-  //   setIngredientFormItems((currState) => {
-  //     const tempIngredientFormItems = [...currState];
-  //     tempIngredientFormItems.push({
-  //       id: tempIngredientFormItems[tempIngredientFormItems.length - 1].id + 1,
-  //     });
-  //     return tempIngredientFormItems;
-  //   });
-  // };
+  const handleAddIngredientFormItem = () => {
+    setFormValues((currState) => {
+      const tempFormValues = { ...currState };
+      tempFormValues.ingredientsAndQuantities.push({
+        ingredient: { name: "" },
+        quantity: { unit: "", value: "" },
+      });
+      return tempFormValues;
+    });
+  };
 
-  // const handleRemoveIngredientFormItem = (id) => {
-  //   setIngredientFormItems((currState) => {
-  //     const tempIngredientFormItems = [...currState];
-  //     if (tempIngredientFormItems.length === 2) {
-  //       return tempIngredientFormItems;
-  //     }
-  //     const filteredIngredientFormItems = tempIngredientFormItems.filter(
-  //       (item) => item.id !== id,
-  //     );
-  //     return filteredIngredientFormItems;
-  //   });
-  // };
+  const handleRemoveIngredientFormItem = (id) => {
+    setFormValues((currState) => {
+      const tempFormValues = { ...currState };
+      const tempIngredientsAndQuantities =
+        tempFormValues.ingredientsAndQuantities.filter(
+          (item, index) => `${item.ingredient.name}-${index}` !== id,
+        );
+      tempFormValues.ingredientsAndQuantities = tempIngredientsAndQuantities;
+      return tempFormValues;
+    });
+  };
 
   return (
     <form className="recipe-form" onSubmit={handleSubmit}>
@@ -65,11 +65,16 @@ const RecipeForm = ({ initialValues, handleSubmit }) => {
             <FontAwesomeIcon
               className="recipe-form__icon"
               icon={faCirclePlus}
-              // onClick={handleAddIngredientFormItem}
+              onClick={handleAddIngredientFormItem}
             />
           </div>
           {formValues.ingredientsAndQuantities.map((item, id) => (
-            <IngredientFormItem key={`${item}-${id}`} data={item} />
+            <IngredientFormItem
+              key={`${item.ingredient.name}-${id}`}
+              id={`${item.ingredient.name}-${id}`}
+              data={item}
+              handleRemoveIngredientFormItem={handleRemoveIngredientFormItem}
+            />
           ))}
         </div>
       </fieldset>
