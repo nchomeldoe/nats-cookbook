@@ -99,7 +99,11 @@ const NewRecipe = () => {
   return (
     <div className="new-recipe">
       <h2 className="new-recipe__header">Add a new recipe:</h2>
-      <RecipeForm initialValues={initialValues} handleSubmit={handleSubmit} />
+      <RecipeForm
+        submitButtonText={"Add recipe"}
+        initialValues={initialValues}
+        handleSubmit={handleSubmit}
+      />
     </div>
   );
 };

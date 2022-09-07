@@ -1,15 +1,25 @@
 import { useState } from "react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import IngredientFormItem from "../IngredientFormItem/IngredientFormItem";
 import Button from "../Button/Button";
 import "./RecipeForm.scss";
 
-const RecipeForm = ({ initialValues, handleSubmit }) => {
-  const [formValues, setFormValues] = useState(initialValues);
+const RecipeForm = ({ initialValues, handleSubmit, submitButtonText }) => {
+  const [formValues, setFormValues] = useState({
+    ...initialValues,
+    description: initialValues.description.join(" "),
+  });
 
-  console.log(formValues.ingredientsAndQuantities);
+  const {
+    id,
+    serves,
+    name,
+    description,
+    createdBy,
+    cuisine,
+    ingredientsAndQuantities,
+  } = formValues;
 
   const handleAddIngredientFormItem = () => {
     setFormValues((currState) => {
@@ -34,6 +44,35 @@ const RecipeForm = ({ initialValues, handleSubmit }) => {
     });
   };
 
+  const handleInput = (e) => {
+    console.log(e.target.id);
+    setFormValues((currState) => {
+      const tempFormValues = { ...currState };
+      if (e.target.id === "recipeName") {
+        tempFormValues.name = e.target.value;
+      }
+      if (e.target.id === "serves") {
+        tempFormValues.serves = e.target.value;
+      }
+      if (e.target.id === "cuisine") {
+        tempFormValues.cuisine = e.target.value;
+      }
+      if (e.target.id === "description") {
+        tempFormValues.description = e.target.description;
+      }
+      return tempFormValues;
+    });
+  };
+
+  const handleReset = (e) => {
+    e.preventDefault();
+    setFormValues({
+      ...initialValues,
+      description: initialValues.description.join(" "),
+    });
+  };
+
+  console.log(formValues);
   return (
     <form className="recipe-form" onSubmit={handleSubmit}>
       <label className="recipe-form__label" htmlFor="recipeName">
@@ -44,7 +83,8 @@ const RecipeForm = ({ initialValues, handleSubmit }) => {
         type="text"
         id="recipeName"
         name="recipeName"
-        defaultValue={initialValues && initialValues.name}
+        value={name}
+        onInput={handleInput}
         required
       />
       <label className="recipe-form__label" htmlFor="serves">
@@ -55,10 +95,11 @@ const RecipeForm = ({ initialValues, handleSubmit }) => {
         type="number"
         id="serves"
         name="serves"
-        defaultValue={initialValues && initialValues.serves}
+        onInput={handleInput}
+        value={serves}
         required
       />
-      <fieldset className="recipe-form__fieldset">
+      {/* <fieldset className="recipe-form__fieldset">
         <div className="recipe-form__ingredients-container">
           <div className="recipe-form__ingredients-heading">
             <legend className="recipe-form__legend">Ingredients</legend>
@@ -77,7 +118,7 @@ const RecipeForm = ({ initialValues, handleSubmit }) => {
             />
           ))}
         </div>
-      </fieldset>
+      </fieldset> */}
       <label className="recipe-form__label" htmlFor="description">
         Method:
       </label>
@@ -85,7 +126,8 @@ const RecipeForm = ({ initialValues, handleSubmit }) => {
         className="recipe-form__input recipe-form__input--textarea"
         id="description"
         name="description"
-        defaultValue={initialValues && initialValues.description.join(" ")}
+        value={description}
+        onInput={handleInput}
         required
       />
       <label className="recipe-form__label" htmlFor="cuisine">
@@ -96,12 +138,18 @@ const RecipeForm = ({ initialValues, handleSubmit }) => {
         type="text"
         id="cuisine"
         name="cuisine"
-        defaultValue={initialValues && initialValues.cuisine}
+        onInput={handleInput}
+        value={cuisine}
         required
       />
       <div className="recipe-form__buttons-container">
-        <Button text="Add recipe" styling="primary" type="submit" />
-        <Button text="Reset" styling="secondary" type="reset" />
+        <Button text={submitButtonText} styling="primary" type="submit" />
+        <Button
+          text="Reset"
+          styling="secondary"
+          type="reset"
+          handleClick={handleReset}
+        />
       </div>
     </form>
   );

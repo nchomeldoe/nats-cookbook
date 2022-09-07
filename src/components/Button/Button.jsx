@@ -1,7 +1,11 @@
 import "./Button.scss";
 
-const Button = ({ text, styling }) => {
-  return <button className={`button button--${styling}`}>{text}</button>;
+const Button = ({ text, styling, handleClick }) => {
+  return (
+    <button className={`button button--${styling}`} onClick={handleClick}>
+      {text}
+    </button>
+  );
 };
 
 export default Button;

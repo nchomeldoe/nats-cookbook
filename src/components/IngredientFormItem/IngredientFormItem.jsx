@@ -3,8 +3,6 @@ import { faCircleMinus } from "@fortawesome/free-solid-svg-icons";
 import "./IngredientFormItem.scss";
 
 const IngredientFormItem = ({ handleRemoveIngredientFormItem, id, data }) => {
-  console.log(id);
-  console.log(data.ingredient);
   return (
     <div className="ingredient-form-item">
       <div className="ingredient-form-item__name-heading">
@@ -26,7 +24,8 @@ const IngredientFormItem = ({ handleRemoveIngredientFormItem, id, data }) => {
         type="text"
         id="ingredientName"
         name="ingredientName"
-        defaultValue={data && data.ingredient.name}
+        // defaultValue={data && data.ingredient.name}
+        value={data.ingredient.name}
         required
       />
       <fieldset className="ingredient-form-item__fieldset">
@@ -44,7 +43,8 @@ const IngredientFormItem = ({ handleRemoveIngredientFormItem, id, data }) => {
               type="number"
               id="quantityValue"
               name="quantityValue"
-              defaultValue={data && data.quantity.value}
+              // defaultValue={data && data.quantity.value}
+              value={data.quantity.value}
               required
             />
           </div>
@@ -59,7 +59,8 @@ const IngredientFormItem = ({ handleRemoveIngredientFormItem, id, data }) => {
               className="ingredient-form-item__input ingredient-form-item__input--select"
               name="quantityUnit"
               id="quantityUnit"
-              defaultValue={data && data.quantity.unit}
+              // defaultValue={data && data.quantity.unit}
+              value={data.quantity.unit}
             >
               <option>item</option>
               <option>mg</option>
