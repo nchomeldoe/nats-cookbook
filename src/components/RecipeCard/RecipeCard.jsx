@@ -24,7 +24,7 @@ const RecipeCard = ({ recipe, deleteRecipe }) => {
           {name} <span className="recipe-card__serves">(serves {serves})</span>
         </h3>
         <div className="recipe-card__icons">
-          <Link to={`/update/${id}`}>
+          <Link to={`/update/${id}`} state={{ recipe: recipe }}>
             <FontAwesomeIcon
               icon={faPenToSquare}
               className="

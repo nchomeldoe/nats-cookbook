@@ -3,32 +3,36 @@ import { faCircleMinus } from "@fortawesome/free-solid-svg-icons";
 import "./IngredientFormItem.scss";
 
 const IngredientFormItem = ({
-  handleRemoveIngredientFormItem,
-  id,
-  ingredientFormItems,
+  // handleRemoveIngredientFormItem,
+  // id,
+  // ingredientFormItems,
+  data,
 }) => {
-  const position = ingredientFormItems.findIndex((item) => item.id == id);
+  // const position = ingredientFormItems.findIndex((item) => item.id === id);
+  // console.log(position);
+  console.log(data.ingredient);
   return (
     <div className="ingredient-form-item">
       <div className="ingredient-form-item__name-heading">
         <label className="ingredient-form-item__label" htmlFor="ingredientName">
           Name:
         </label>
-        {position > 1 && (
-          <FontAwesomeIcon
-            className="ingredient-form-item__icon"
-            icon={faCircleMinus}
-            onClick={() => {
-              handleRemoveIngredientFormItem(id);
-            }}
-          />
-        )}
+        {/* {position > 1 && ( */}
+        <FontAwesomeIcon
+          className="ingredient-form-item__icon"
+          icon={faCircleMinus}
+          // onClick={() => {
+          //   handleRemoveIngredientFormItem(id);
+          // }}
+        />
+        {/* )} */}
       </div>
       <input
         className="ingredient-form-item__input ingredient-form-item__input--text"
         type="text"
         id="ingredientName"
         name="ingredientName"
+        defaultValue={data && data.ingredient.name}
         required
       />
       <fieldset className="ingredient-form-item__fieldset">
@@ -46,6 +50,7 @@ const IngredientFormItem = ({
               type="number"
               id="quantityValue"
               name="quantityValue"
+              defaultValue={data && data.quantity.value}
               required
             />
           </div>
@@ -60,6 +65,7 @@ const IngredientFormItem = ({
               className="ingredient-form-item__input ingredient-form-item__input--select"
               name="quantityUnit"
               id="quantityUnit"
+              defaultValue={data && data.quantity.unit}
             >
               <option>item</option>
               <option>mg</option>

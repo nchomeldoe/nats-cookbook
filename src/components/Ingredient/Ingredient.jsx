@@ -1,7 +1,7 @@
 import "./Ingredient.scss";
 
 const Ingredient = ({ name, value, unit }) => {
-  if (value != 1) {
+  if (value !== 1) {
     switch (unit) {
       case "cup":
         unit = "cups";
@@ -36,7 +36,7 @@ const Ingredient = ({ name, value, unit }) => {
     }
   }
 
-  if (unit == "item") {
+  if (unit === "item") {
     unit = "";
   }
 

@@ -29,7 +29,7 @@ const RecipeCardContainer = () => {
       if (!response.ok) {
         throw new Error(response.status + " error with request");
       }
-      const updatedRecipes = recipes.filter((recipe) => recipe.id != recipeId);
+      const updatedRecipes = recipes.filter((recipe) => recipe.id !== recipeId);
       setRecipes(updatedRecipes);
     } catch (error) {
       return error.message;
