@@ -2,14 +2,44 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleMinus } from "@fortawesome/free-solid-svg-icons";
 import "./IngredientFormItem.scss";
 
-const IngredientFormItem = ({ handleRemoveIngredientFormItem, id, data }) => {
+const IngredientFormItem = ({
+  handleRemoveIngredientFormItem,
+  id,
+  data,
+  setFormValues,
+}) => {
+  const handleInput = (e) => {
+    setFormValues((currState) => {
+      const tempFormValues = { ...currState };
+      if (e.target.id === "ingredientName") {
+        tempFormValues.ingredientsAndQuantities[id].ingredient.name =
+          e.target.value;
+      }
+      if (e.target.id === "quantityValue") {
+        tempFormValues.ingredientsAndQuantities[id].quantity.value =
+          e.target.value;
+      }
+      return tempFormValues;
+    });
+  };
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setFormValues((currState) => {
+      const tempFormValues = { ...currState };
+      tempFormValues.ingredientsAndQuantities[id].quantity.unit =
+        e.target.value;
+      return tempFormValues;
+    });
+  };
+
   return (
     <div className="ingredient-form-item">
       <div className="ingredient-form-item__name-heading">
         <label className="ingredient-form-item__label" htmlFor="ingredientName">
           Name:
         </label>
-        {id.substring(id.lastIndexOf("-") + 1, id.length) > 1 && (
+        {id > 1 && (
           <FontAwesomeIcon
             className="ingredient-form-item__icon"
             icon={faCircleMinus}
@@ -24,8 +54,8 @@ const IngredientFormItem = ({ handleRemoveIngredientFormItem, id, data }) => {
         type="text"
         id="ingredientName"
         name="ingredientName"
-        // defaultValue={data && data.ingredient.name}
         value={data.ingredient.name}
+        onInput={handleInput}
         required
       />
       <fieldset className="ingredient-form-item__fieldset">
@@ -43,8 +73,8 @@ const IngredientFormItem = ({ handleRemoveIngredientFormItem, id, data }) => {
               type="number"
               id="quantityValue"
               name="quantityValue"
-              // defaultValue={data && data.quantity.value}
               value={data.quantity.value}
+              onInput={handleInput}
               required
             />
           </div>
@@ -59,8 +89,8 @@ const IngredientFormItem = ({ handleRemoveIngredientFormItem, id, data }) => {
               className="ingredient-form-item__input ingredient-form-item__input--select"
               name="quantityUnit"
               id="quantityUnit"
-              // defaultValue={data && data.quantity.unit}
               value={data.quantity.unit}
+              onChange={handleChange}
             >
               <option>item</option>
               <option>mg</option>

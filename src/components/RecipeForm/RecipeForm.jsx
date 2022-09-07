@@ -37,15 +37,14 @@ const RecipeForm = ({ initialValues, handleSubmit, submitButtonText }) => {
       const tempFormValues = { ...currState };
       const tempIngredientsAndQuantities =
         tempFormValues.ingredientsAndQuantities.filter(
-          (item, index) => `${item.ingredient.name}-${index}` !== id,
+          (item, index) => index !== id,
         );
       tempFormValues.ingredientsAndQuantities = tempIngredientsAndQuantities;
       return tempFormValues;
     });
   };
 
-  const handleInput = (e) => {
-    console.log(e.target.id);
+  const handleInput = (e, id = "") => {
     setFormValues((currState) => {
       const tempFormValues = { ...currState };
       if (e.target.id === "recipeName") {
@@ -99,7 +98,7 @@ const RecipeForm = ({ initialValues, handleSubmit, submitButtonText }) => {
         value={serves}
         required
       />
-      {/* <fieldset className="recipe-form__fieldset">
+      <fieldset className="recipe-form__fieldset">
         <div className="recipe-form__ingredients-container">
           <div className="recipe-form__ingredients-heading">
             <legend className="recipe-form__legend">Ingredients</legend>
@@ -111,14 +110,15 @@ const RecipeForm = ({ initialValues, handleSubmit, submitButtonText }) => {
           </div>
           {formValues.ingredientsAndQuantities.map((item, id) => (
             <IngredientFormItem
-              key={`${item.ingredient.name}-${id}`}
-              id={`${item.ingredient.name}-${id}`}
+              key={id}
+              id={id}
               data={item}
               handleRemoveIngredientFormItem={handleRemoveIngredientFormItem}
+              setFormValues={setFormValues}
             />
           ))}
         </div>
-      </fieldset> */}
+      </fieldset>
       <label className="recipe-form__label" htmlFor="description">
         Method:
       </label>
