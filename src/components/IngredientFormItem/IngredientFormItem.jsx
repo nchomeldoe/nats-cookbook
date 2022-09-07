@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleMinus } from "@fortawesome/free-solid-svg-icons";
 import "./IngredientFormItem.scss";
+import { formatData } from "../../utils/utils";
 
 const IngredientFormItem = ({
   handleRemoveIngredientFormItem,
@@ -10,10 +11,13 @@ const IngredientFormItem = ({
 }) => {
   const handleInput = (e) => {
     setFormValues((currState) => {
-      const tempFormValues = { ...currState };
+      const tempFormValues = {
+        ...currState,
+        ingredientsAndQuantities: [...currState.ingredientsAndQuantities],
+      };
       if (e.target.id === "ingredientName") {
         tempFormValues.ingredientsAndQuantities[id].ingredient.name =
-          e.target.value;
+          formatData(e.target.value);
       }
       if (e.target.id === "quantityValue") {
         tempFormValues.ingredientsAndQuantities[id].quantity.value =
@@ -24,9 +28,11 @@ const IngredientFormItem = ({
   };
 
   const handleChange = (e) => {
-    e.preventDefault();
     setFormValues((currState) => {
-      const tempFormValues = { ...currState };
+      const tempFormValues = {
+        ...currState,
+        ingredientsAndQuantities: [...currState.ingredientsAndQuantities],
+      };
       tempFormValues.ingredientsAndQuantities[id].quantity.unit =
         e.target.value;
       return tempFormValues;

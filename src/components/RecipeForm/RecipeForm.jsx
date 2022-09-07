@@ -1,16 +1,17 @@
-import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import IngredientFormItem from "../IngredientFormItem/IngredientFormItem";
 import Button from "../Button/Button";
 import "./RecipeForm.scss";
+import { formatData } from "../../utils/utils";
 
-const RecipeForm = ({ initialValues, handleSubmit, submitButtonText }) => {
-  const [formValues, setFormValues] = useState({
-    ...initialValues,
-    description: initialValues.description.join(" "),
-  });
-
+const RecipeForm = ({
+  handleSubmit,
+  submitButtonText,
+  formValues,
+  setFormValues,
+  handleReset,
+}) => {
   const {
     id,
     serves,
@@ -23,55 +24,55 @@ const RecipeForm = ({ initialValues, handleSubmit, submitButtonText }) => {
 
   const handleAddIngredientFormItem = () => {
     setFormValues((currState) => {
-      const tempFormValues = { ...currState };
-      tempFormValues.ingredientsAndQuantities.push({
-        ingredient: { name: "" },
-        quantity: { unit: "", value: "" },
-      });
-      return tempFormValues;
+      return {
+        ...currState,
+        ingredientsAndQuantities: [
+          ...currState.ingredientsAndQuantities,
+          {
+            ingredient: { name: "" },
+            quantity: { unit: "", value: "" },
+          },
+        ],
+      };
     });
   };
 
   const handleRemoveIngredientFormItem = (id) => {
     setFormValues((currState) => {
-      const tempFormValues = { ...currState };
-      const tempIngredientsAndQuantities =
+      const tempFormValues = {
+        ...currState,
+        ingredientsAndQuantities: [...currState.ingredientsAndQuantities],
+      };
+      tempFormValues.ingredientsAndQuantities =
         tempFormValues.ingredientsAndQuantities.filter(
           (item, index) => index !== id,
         );
-      tempFormValues.ingredientsAndQuantities = tempIngredientsAndQuantities;
       return tempFormValues;
     });
   };
 
   const handleInput = (e, id = "") => {
     setFormValues((currState) => {
-      const tempFormValues = { ...currState };
+      const tempFormValues = {
+        ...currState,
+        ingredientsAndQuantities: [...currState.ingredientsAndQuantities],
+      };
       if (e.target.id === "recipeName") {
-        tempFormValues.name = e.target.value;
+        tempFormValues.name = formatData(e.target.value);
       }
       if (e.target.id === "serves") {
-        tempFormValues.serves = e.target.value;
+        tempFormValues.serves = formatData(e.target.value);
       }
       if (e.target.id === "cuisine") {
-        tempFormValues.cuisine = e.target.value;
+        tempFormValues.cuisine = formatData(e.target.value);
       }
       if (e.target.id === "description") {
-        tempFormValues.description = e.target.description;
+        tempFormValues.description = e.target.value;
       }
       return tempFormValues;
     });
   };
 
-  const handleReset = (e) => {
-    e.preventDefault();
-    setFormValues({
-      ...initialValues,
-      description: initialValues.description.join(" "),
-    });
-  };
-
-  console.log(formValues);
   return (
     <form className="recipe-form" onSubmit={handleSubmit}>
       <label className="recipe-form__label" htmlFor="recipeName">

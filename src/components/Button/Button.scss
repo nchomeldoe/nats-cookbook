@@ -9,7 +9,7 @@
   &--primary {
     background-color: $color-primary;
     color: $color-secondary;
-    &:hover {
+    &:active {
       background-color: $color-secondary;
       color: $color-primary;
     }
@@ -18,7 +18,7 @@
   &--secondary {
     background-color: $color-secondary;
     color: $color-primary;
-    &:hover {
+    &:active {
       background-color: $color-primary;
       color: $color-secondary;
     }
