@@ -30,7 +30,7 @@ const RecipeForm = ({
           ...currState.ingredientsAndQuantities,
           {
             ingredient: { name: "" },
-            quantity: { unit: "", value: "" },
+            quantity: { unit: "item", value: "" },
           },
         ],
       };

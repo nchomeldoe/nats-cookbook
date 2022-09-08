@@ -15,7 +15,8 @@ const UpdateRecipe = () => {
     description: recipe.description.join(" "),
   });
 
-  const handleReset = () => {
+  const handleReset = (e) => {
+    e.preventDefault();
     setFormValues({
       ...recipe,
       description: recipe.description.join(" "),
