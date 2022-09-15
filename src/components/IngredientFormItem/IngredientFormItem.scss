@@ -11,31 +11,16 @@
   }
 
   &__input {
-    margin-top: 0.5rem;
-    margin-right: 0.5rem;
-    padding: 0.2rem;
-    border: 0.02rem solid $color-primary;
-    outline: 0;
-    font-size: 100%;
-    font-family: $font-secondary;
-    color: $color-primary;
+    @include form-input;
   }
 
   &__fieldset {
-    margin-top: 0.5rem;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    display: flex;
-    flex-direction: column;
-    font-family: $font-secondary;
-    color: $color-primary;
+    @include form-fieldset;
   }
 
   &__label {
-    margin-top: 0.5rem;
     margin-right: 0.5rem;
+    margin-top: 1.2rem;
   }
 
   &__icon {
@@ -44,5 +29,9 @@
 
   &__quantity-container {
     display: flex;
+    flex-direction: column;
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+    }
   }
 }

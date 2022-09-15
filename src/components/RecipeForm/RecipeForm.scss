@@ -5,6 +5,10 @@
   font-family: $font-secondary;
   display: flex;
   flex-direction: column;
+  font-size: 0.8rem;
+  @media screen and (min-width: 768px) {
+    font-size: 1rem;
+  }
 
   &__label {
     margin-top: 0.5rem;
@@ -12,14 +16,7 @@
   }
 
   &__input {
-    margin-top: 0.5rem;
-    margin-right: 0.5rem;
-    padding: 0.2rem;
-    border: 0.02rem solid $color-primary;
-    outline: 0;
-    font-size: 100%;
-    font-family: $font-secondary;
-    color: $color-primary;
+    @include form-input;
 
     &--textarea {
       height: 15rem;
@@ -43,15 +40,7 @@
   }
 
   &__fieldset {
-    margin-top: 0.5rem;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    display: flex;
-    flex-direction: column;
-    font-family: $font-secondary;
-    color: $color-primary;
+    @include form-fieldset;
   }
 
   &__buttons-container {
