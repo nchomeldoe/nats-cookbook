@@ -4,12 +4,26 @@
   font-family: $font-secondary;
   border: 0.2rem solid $color-primary;
   border-radius: 1rem;
-  padding: 1rem;
-  min-width: 15rem;
+  padding: 0.8rem;
+  width: 100%;
+  @media screen and (min-width: 768px) {
+    padding: 1rem;
+  }
+
+  &__name {
+    max-width: 12rem;
+    @media screen and (min-width: 768px) {
+      max-width: 50rem;
+    }
+  }
 
   &__top-line {
     display: flex;
     justify-content: space-between;
+    font-size: 0.7rem;
+    @media screen and (min-width: 768px) {
+      font-size: 1rem;
+    }
   }
 
   &__icon {
@@ -22,21 +36,37 @@
   &__ingredients,
   &__description {
     margin-bottom: 1rem;
+    font-size: 0.8rem;
+    @media screen and (min-width: 768px) {
+      font-size: 1rem;
+    }
   }
 
   &__serves {
-    font-size: 0.8rem;
     margin-left: 1rem;
+    font-size: 0.6rem;
+    @media screen and (min-width: 768px) {
+      font-size: 0.8rem;
+    }
   }
 
   &__subheading {
     margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    @media screen and (min-width: 768px) {
+      font-size: 1rem;
+    }
   }
 
   &__cuisine {
-    width: 5rem;
+    width: 4rem;
     text-align: center;
     background-color: $color-primary;
     color: $color-secondary;
+    font-size: 0.8rem;
+    @media screen and (min-width: 768px) {
+      font-size: 1rem;
+      width: 5rem;
+    }
   }
 }

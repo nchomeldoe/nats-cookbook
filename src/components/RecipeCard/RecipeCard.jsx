@@ -15,7 +15,7 @@ const RecipeCard = ({ recipe, deleteRecipe }) => {
     ingredientsAndQuantities,
   } = recipe;
 
-  const descriptionText = description.join(" ");
+  const descriptionText = description?.join(" ");
 
   return (
     <div className="recipe-card">

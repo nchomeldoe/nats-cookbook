@@ -4,17 +4,22 @@
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  min-width: 80vw;
+  max-width: 50rem;
 
   &__top-line {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   &__header {
     font-family: $font-primary;
     font-weight: 400;
-    font-size: 3rem;
+    font-size: 2.5rem;
+
+    @media screen and (min-width: 768px) {
+      font-size: 3rem;
+    }
   }
 
   &__recipes {
